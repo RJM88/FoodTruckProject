@@ -7,46 +7,90 @@ public class FoodTruckApp {
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in);
 
+		boolean quit = false;
+
 		FoodTruck[] foodTruckArray;
 
 		foodTruckArray = new FoodTruck[5];
 
-		FoodTruck truck1;
-		FoodTruck truck2;
-		FoodTruck truck3;
-		FoodTruck truck4;
-		FoodTruck truck5;
 		for (int i = 0; i < foodTruckArray.length; i++) {
+			FoodTruck foodTruck = new FoodTruck();
+
 			System.out.println("Please enter the truck name: ");
 			String name = kb.nextLine();
-			if(!name.equals("quit")) {
-			}
-			System.out.println("Please enter the food type:  ");
-			String type = kb.nextLine();
 
-			System.out.println("Please enter the truck rating: ");
-			int rating = kb.nextInt();
-			String blank = kb.nextLine();
-			if(name.equals("quit")) {
-				
-			}
+			if (name.equals("quit")) {
+				System.out.println("No entry.");
+				foodTruckArray[i] = foodTruck;
+				continue;
+			} else {
+				foodTruck.setName(name);
 
-			truck1 = new FoodTruck(name, type, rating);
-			truck2 = new FoodTruck(name, type, rating);
-			truck3 = new FoodTruck(name, type, rating);
-			truck4 = new FoodTruck(name, type, rating);
-			truck5 = new FoodTruck(name, type, rating);
-			foodTruckArray[i] = truck1;
-			foodTruckArray[i] = truck2;
-			foodTruckArray[i] = truck2;
-			foodTruckArray[i] = truck4;
-			foodTruckArray[i] = truck5;
+				System.out.println("Please enter the food type:  ");
+				String type = kb.nextLine();
+				foodTruck.setType(type);
+
+				System.out.println("Please enter the truck rating: ");
+				int rating = kb.nextInt();
+				kb.nextLine();
+				foodTruck.setRating(rating);
+				foodTruckArray[i] = foodTruck;
+			}
 		}
-		System.out.println(foodTruckArray[0].infoString());
-		System.out.println(foodTruckArray[1].infoString());
-		System.out.println(foodTruckArray[2].infoString());
-		System.out.println(foodTruckArray[3].infoString());
-		System.out.println(foodTruckArray[4].infoString());
+		while (!quit) {
+			System.out.println("1.) List all existing food trucks.");
+			System.out.println("2.) See the average rating of food trucks.");
+			System.out.println("3.) Display the highest-rated food truck.");
+			System.out.println("4.) Quit the program.");
+			System.out.println();
+			int userChoice = kb.nextInt();
+			switch (userChoice) {
+			case 1:
+				for (FoodTruck foodTruck : foodTruckArray) {
+					if (foodTruck.getName() != null) {
+						System.out.println(foodTruck);
+					}
+				}
+				break;
+			case 2:
+				int ratingTracker = 0;
+				int ratingDivider = 0;
+				for (FoodTruck foodTruck : foodTruckArray) {
+					if (foodTruck.getName() != null) {
+						ratingTracker += foodTruck.getRating();
+						ratingDivider += 1;
+					}
+
+				}
+				System.out.println(ratingTracker / ratingDivider );
+				break;
+
+				
+			case 3:
+				FoodTruck highRatedFoodTruck = new FoodTruck();
+				for (FoodTruck foodTruck : foodTruckArray) {
+					if (foodTruck.getName() != null && highRatedFoodTruck.getName() == null) {
+						highRatedFoodTruck = foodTruck;
+						
+					}else if (highRatedFoodTruck.getName() != null) {
+						if(highRatedFoodTruck.getRating() < foodTruck.getRating())
+							highRatedFoodTruck = foodTruck;
+					}
+					
+				}
+				System.out.println(highRatedFoodTruck);
+				break;
+				
+			case 4:
+					System.out.println("GoodBye!");
+					quit = true;
+					break;
+			default:
+				System.out.println("Not valid");
+			}
+
+		}
+
 	}
 
 }

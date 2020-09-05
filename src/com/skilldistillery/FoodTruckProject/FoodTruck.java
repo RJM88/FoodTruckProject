@@ -6,7 +6,7 @@ public class FoodTruck {
 	private String name;
 	private String type;
 	private int rating;
-	private int maxTrucks = 5;
+//	private int maxTrucks = 5;
 	
 	public FoodTruck() {
 		
@@ -44,15 +44,15 @@ public class FoodTruck {
 	}
 
 
-	public String infoString() {
+	public String toString() {
 		String info = "Name of truck: " + getName() + ", Type of food: " + getType() + ", Rating of food: "
 				+ getRating();
 		return info;
 	}
 
-	public void displayTruckInfo() {
-		String truckInfo = infoString();
-		System.out.println(truckInfo);
-	}			
+//	public void displayTruckInfo() {
+//		String truckInfo = toString();
+//		System.out.println(truckInfo);
+//	}			
 
 }
