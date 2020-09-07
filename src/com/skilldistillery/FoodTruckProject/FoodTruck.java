@@ -1,17 +1,14 @@
 package com.skilldistillery.FoodTruckProject;
 
-import java.util.Scanner;
-
 public class FoodTruck {
 	private String name;
 	private String type;
 	private int rating;
-//	private int maxTrucks = 5;
-	
+
 	public FoodTruck() {
-		
+
 	}
-	
+
 	public FoodTruck(String name, String type, int rating) {
 		this.name = name;
 		this.type = type;
@@ -43,16 +40,10 @@ public class FoodTruck {
 		this.rating = rating;
 	}
 
-
 	public String toString() {
 		String info = "Name of truck: " + getName() + ", Type of food: " + getType() + ", Rating of food: "
 				+ getRating();
 		return info;
 	}
-
-//	public void displayTruckInfo() {
-//		String truckInfo = toString();
-//		System.out.println(truckInfo);
-//	}			
 
 }
