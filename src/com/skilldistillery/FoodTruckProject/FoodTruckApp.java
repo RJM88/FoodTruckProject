@@ -6,9 +6,8 @@ public class FoodTruckApp {
 
 	public static void main(String[] args) {
 		Scanner kb = new Scanner(System.in); // Setting up Scanner for user input.
-
+		int truckIdTracker = 1;
 		boolean quit = false; // boolean used for the while loop.
-		int foodTruckNumberId = 0; // int used to assign food trucks an ID.
 
 		FoodTruck[] foodTruckArray = new FoodTruck[5];// Declaring and initializing the food truck array.
 		// This for loop will take all the user input and enter it into the food truck
@@ -38,12 +37,12 @@ public class FoodTruckApp {
 				int rating = kb.nextInt(); // will store user input in a variable.
 				kb.nextLine(); // blank line to prevent the next Int from skipping forward.
 				foodTruck.setRating(rating);
+				foodTruck.setTruckIdNumber(truckIdTracker++);
 				foodTruckArray[i] = foodTruck;
 			}
 		}
 		while (!quit) {
 			System.out.println(); // blank line for spacing
-			System.out.println("|||--MENU--|||");
 			// Menu option 1 will list all trucks entered.
 			System.out.println("1.) List all existing food trucks.");
 			// Menu option 2 will list the average of all trucks entered.
@@ -60,8 +59,6 @@ public class FoodTruckApp {
 
 				for (FoodTruck foodTruck : foodTruckArray) { // for each loop will work through the food truck array.
 					if (foodTruck.getName() != null) { // if the food truck/ private sting name doesn't == null...
-						foodTruckNumberId++; // Food truck Id will increase by 1.
-						System.out.print(foodTruckNumberId + ".) "); // Will print the truck ID + " .) " example: 1.) .
 						System.out.println(foodTruck); // Will print the truck info from the food truck array.
 					}
 				}
@@ -86,20 +83,17 @@ public class FoodTruckApp {
 			case 3:
 				FoodTruck highRatedFoodTruck = new FoodTruck(); // creating a new food truck object.
 				for (FoodTruck foodTruck : foodTruckArray) { // for each loop will work through the food truck array.
-					// of foodTruck name dosn't == null and highRatedFoodTruck does == null
+					
 					if (foodTruck.getName() != null && highRatedFoodTruck.getName() == null) { 
-						highRatedFoodTruck = foodTruck; // highRatedFoodTruck becomes the value of foodTruck.
-					// Otherwise if highRatedFoodTruck dosn't == null
+						highRatedFoodTruck = foodTruck;
+
 					} else if (highRatedFoodTruck.getName() != null) {
-						// if highRatedFoodTruck is less then foodTruck.
 						if (highRatedFoodTruck.getRating() < foodTruck.getRating())
-							//highRatedFoodTruck will take the value of foodTruck.
 							highRatedFoodTruck = foodTruck;
 					}
 
 				}
 				System.out.println("The highest rated food truck is: ");
-				// highRatedFoodTruck will be printed.
 				System.out.println(highRatedFoodTruck);
 				break;
 

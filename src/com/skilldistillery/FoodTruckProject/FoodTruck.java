@@ -4,6 +4,23 @@ public class FoodTruck {
 	private String name;
 	private String type;
 	private int rating;
+	private static int truckId;
+	private int truckIdNumber;
+	
+	@Override
+	public String toString() {
+		return "FoodTruck [name=" + name + ", type=" + type + ", rating=" + rating + ", truckIdNumber=" + truckIdNumber
+				+ "]";
+	}
+
+	public int getTruckIdNumber() {
+		return truckIdNumber;
+	}
+
+	public void setTruckIdNumber(int truckIdNumber) {
+		this.truckIdNumber = truckIdNumber;
+	}
+
 
 	public FoodTruck() {
 
@@ -40,10 +57,13 @@ public class FoodTruck {
 		this.rating = rating;
 	}
 
-	public String toString() {
-		String info = "Name of truck: " + getName() + ", Type of food: " + getType() + ", Rating of food: "
-				+ getRating();
-		return info;
+	public static int getTruckId() {
+		return truckId;
 	}
+
+	public static void setTruckId(int truckId) {
+		FoodTruck.truckId = truckId;
+	}
+
 
 }
